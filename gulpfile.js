@@ -43,6 +43,19 @@ gulp.task('server', function () {
     gulp.watch('src/less/**/*.less', ['dev:less']).on('change', browserSync.reload);
 });
 
+gulp.task('dev:copy', function () {
+    gulp.watch('src/static/**/*', function (event) {
+        var paths = watchPath(event);
+        gutil.log(gutil.colors.green(event.type) + ' ' + paths.srcPath);
+        gutil.log('Dist ' + paths.distPath);
+        gulp.src(paths.srcPath)
+        .pipe(gulp.dest(paths.distDir))
+    })
+});
+gulp.task('build:copy', function () {
+    gulp.src('src/static/**/*')
+    .pipe(gulp.dest('dist/static/'))
+});
 
 gulp.task('dev:image', function () {
     gulp.watch('src/images/**/*', function (event) {
@@ -122,5 +135,5 @@ gulp.task('build:js', function () {
     combined.on('error', handleError)
 });
 
-gulp.task('build', ['clean', 'build:js', 'build:less', 'build:image', 'html']);
-gulp.task('default', ['clean', 'build:js', 'build:less', 'build:image', 'dev:js', 'dev:less', 'dev:image', 'html', 'server']);
+gulp.task('build', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'html']);
+gulp.task('default', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'dev:js', 'dev:copy', 'dev:less', 'dev:image', 'html', 'server']);
