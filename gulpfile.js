@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     uglify = require('gulp-uglify'),
+    babel = require('gulp-babel'),
     watchPath = require('gulp-watch-path'),
     combiner = require('stream-combiner2'),
     minifycss = require('gulp-minify-css'),
@@ -119,6 +120,7 @@ gulp.task('dev:js', function () {
         var combined = combiner.obj([
             gulp.src(paths.srcPath),
             sourcemaps.init(),
+            babel({ presets: ['env'], plugins: ['transform-runtime']     }),
             uglify(),
             sourcemaps.write('./'),
             gulp.dest(paths.distDir)
@@ -129,6 +131,7 @@ gulp.task('dev:js', function () {
 gulp.task('build:js', function () {
     var combined = combiner.obj([
         gulp.src('src/js/**/*.js'),
+        babel({ presets: ['env'], plugins: ['transform-runtime'] }),
         uglify(),
         gulp.dest('dist/js/')
     ]);
