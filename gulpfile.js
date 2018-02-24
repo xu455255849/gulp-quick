@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     watchPath = require('gulp-watch-path'),
     combiner = require('stream-combiner2'),
     minifycss = require('gulp-minify-css'),
-    autoprefixer = require('gulp-autoprefixer'),
+    LessAutoprefix = require('less-plugin-autoprefix'),
+    autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] }),
     sourcemaps = require('gulp-sourcemaps'),
     imagemin = require('gulp-imagemin'),
     less = require('gulp-less'),
@@ -45,12 +46,9 @@ gulp.task('server', function () {
 });
 
 gulp.task('dev:copy', function () {
-    gulp.watch('src/static/**/*', function (event) {
-        var paths = watchPath(event);
-        gutil.log(gutil.colors.green(event.type) + ' ' + paths.srcPath);
-        gutil.log('Dist ' + paths.distPath);
-        gulp.src(paths.srcPath)
-        .pipe(gulp.dest(paths.distDir))
+    gulp.watch('src/static/**/*', function () {
+        gulp.src('src/static/**/*')
+        .pipe(gulp.dest('dist/static/'))
     })
 });
 gulp.task('build:copy', function () {
@@ -76,7 +74,7 @@ gulp.task('build:image', function () {
         progressive: true
     }))
     .pipe(gulp.dest('dist/images'))
-})
+});
 
 gulp.task('dev:less', function () {
     gulp.watch('src/less/**/*.less', function (event) {
@@ -86,11 +84,9 @@ gulp.task('dev:less', function () {
         var combined = combiner.obj([
             gulp.src(paths.srcPath),
             sourcemaps.init(),
-            autoprefixer({
-                browsers: ['last 2 versions'],
-                cascade: false
+            less({
+                plugins: [autoprefix]
             }),
-            less(),
             minifycss(),
             sourcemaps.write('./'),
             gulp.dest(paths.distDir)
@@ -101,11 +97,9 @@ gulp.task('dev:less', function () {
 gulp.task('build:less', function () {
     var combined = combiner.obj([
         gulp.src('src/less/**/*.less'),
-        autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
+        less({
+            plugins: [autoprefix]
         }),
-        less(),
         minifycss(),
         gulp.dest('dist/css/')
     ]);
@@ -139,4 +133,4 @@ gulp.task('build:js', function () {
 });
 
 gulp.task('build', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'html']);
-gulp.task('default', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'dev:js', 'dev:copy', 'dev:less', 'dev:image', 'html', 'server']);
+gulp.task('default', ['clean', 'build:copy', 'dev:copy', 'build:js', 'build:less', 'build:image', 'dev:image', 'html', 'server']);
