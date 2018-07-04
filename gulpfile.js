@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     less = require('gulp-less'),
     del = require('del'),
+    rev = require('gulp-rev'),
     fileinclude = require('gulp-file-include'),
     browserSync = require('browser-sync').create(),
     cdnify = require('gulp-cdnify'),
@@ -31,11 +32,18 @@ gulp.task('clean', function () {
 gulp.task('html', function () {
     return gulp.src('src/pages/*.html')
         .pipe(fileinclude())
-        /*   .pipe(cdnify({
-               base: 'http://static.kanhunli.cn/yunxi/official/testfive/testfive/'
-           }))*/
         .pipe(gulp.dest('dist/pages'));
 });
+
+gulp.task('build:html', function () {
+    return gulp.src('src/pages/*.html')
+        .pipe(fileinclude())
+        .pipe(cdnify({
+            base: 'http://static.kanhunli.cn/yunxi/official/testfive/testfive/'
+        }))
+        .pipe(gulp.dest('dist/pages'));
+});
+
 gulp.task('server', function () {
     browserSync.init({
         server: {
@@ -84,6 +92,17 @@ gulp.task('build:image', function () {
         .pipe(gulp.dest('dist/images'))
 });
 
+gulp.task('less', function () {
+    var combined = combiner.obj([
+        gulp.src('src/less/**/*.less'),
+        less({
+            plugins: [autoprefix]
+        }),
+        minifycss(),
+        gulp.dest('dist/css/')
+    ]);
+    combined.on('error', handleError)
+});
 gulp.task('dev:less', function () {
     gulp.watch('src/less/**/*.less', function (event) {
         var paths = watchPath(event, 'src/less/', 'dist/css/');
@@ -109,9 +128,9 @@ gulp.task('build:less', function () {
             plugins: [autoprefix]
         }),
         minifycss(),
-        /* cdnify({
-             base: 'http://static.kanhunli.cn/yunxi/official/testfive/testfive/'
-         }),*/
+        cdnify({
+            base: 'http://static.kanhunli.cn/yunxi/official/testfive/testfive/'
+        }),
         gulp.dest('dist/css/')
     ]);
     combined.on('error', handleError)
@@ -158,5 +177,6 @@ gulp.task('build:js', function () {
     combined.on('error', handleError)
 });
 
-gulp.task('build', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'html']);
-gulp.task('default', ['clean', 'build:copy', 'dev:copy', 'build:js', 'build:less', 'build:image', 'dev:image', 'html', 'server']);
+gulp.task('default', ['clean', 'build:copy', 'dev:copy', 'build:js', 'less', 'build:image', 'dev:image', 'html', 'server']);
+gulp.task('build', ['clean', 'build:copy', 'build:js', 'build:less', 'build:image', 'build:html']);
+
