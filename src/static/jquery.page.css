@@ -1,0 +1,89 @@
+@charset "utf-8";
+/*样式参考*/
+#page {
+    height: auto;
+    display: table;
+    margin: 60px auto;
+    font-size: 14px;
+}
+.page {
+    text-align: center;
+}
+.pagingUl {
+    float: right;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    height: auto;
+}
+
+.pagingUl li {
+    float: left;
+    background: #fff;
+    text-align: center;
+    margin-right: 5px;
+    border-radius: 4px
+}
+
+.pagingUl li a {
+    display: inline-block;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    color: #666;
+    background: #FAFAFA;
+    border-radius: 4px
+}
+
+.prv,
+.next {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    background: #FAFAFA;
+    border-radius: 4px;
+}
+
+.prv {
+    margin-right: 10px;
+}
+
+.first,
+.last {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    background: #FAFAFA;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.prv:hover,
+.next:hover,
+.first:hover,
+.last:hover,
+.pagingUl li a:hover {
+    opacity: 0.4 !important;
+    background: #4C7CF7 !important;
+    color: #fff!important;
+}
+
+/*
+@media screen and (max-width: 992px) {
+    .first,
+    .last {
+        padding: .1rem .5rem !important;
+    }
+    .prv,
+    .next {
+        padding: .1rem .5rem !important;
+    }
+    .pagingUl li a {
+        padding: .1rem .5rem !important;
+    }
+}*/

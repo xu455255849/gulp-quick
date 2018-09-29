@@ -1,0 +1,141 @@
+@import "common/var";
+@import "common/mixin";
+@import "common/header";
+@import "common/footer";
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+ul, ol {
+  list-style: none;
+}
+a {
+  text-decoration: none !important;
+}
+html {
+  font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei","HanHei SC","Helvetica Neue","Open Sans",Arial,"Hiragino Sans GB","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+  font-size: 62.5%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+body {
+  font-family: "PingFang SC","Lantinghei SC","Microsoft YaHei","HanHei SC","Helvetica Neue","Open Sans",Arial,"Hiragino Sans GB","微软雅黑",STHeiti,"WenQuanYi Micro Hei",SimSun,sans-serif;
+  font-size: 12px;
+  color: #111;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 991px) {
+  html {
+    font-size: 31.25%;
+  }
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block !important;
+  margin-top: 0 !important;
+}
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+  background: none !important;
+}
+
+.sm-rbtn {
+  padding: 5px 20px;
+  font-size: 1.2rem;
+  background: @blue;
+  color: @white;
+  .base-rbtn;
+  &:hover {
+    background: tint(@blue, 50%);
+  }
+}
+.sm-btn {
+  padding: 5px 20px;
+  font-size: 1.2rem;
+  background: @blue;
+  color: @white;
+  .base-btn;
+  &:hover {
+    background: tint(@blood, 50%);
+  }
+}
+.md-btn {
+  width: 100px;
+  height: 36px;
+  line-height: 36px;
+  background: @blood;
+  color: @white;
+  .base-btn;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.lg-btn {
+  width: 20rem;
+  height: 4.6rem;
+  line-height: 4.6rem;
+  font-size: 1.6rem;
+  background: @blood;
+  color: @white;
+  .base-btn;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.tc {
+  text-align: center;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.active-trans-item {
+  padding-bottom: 5px;
+  border-bottom: 2px solid @white !important;
+}
+.active-page {
+  background: @blue !important;
+  color: #fff !important;
+}
+
+
+
+.link {
+  font-size: 1.8rem;
+  color: @blood;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.img-main {
+  width: 50%;
+}
+@media screen and (max-width: 991px) {
+  .img-main {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .show-pc {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .show-mobile {
+   display: none;
+  }
+}
+
+

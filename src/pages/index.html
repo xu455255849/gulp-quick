@@ -1,15 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="../css/less.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>云犀直播-企业直播服务平台,网络视频直播平台,免费微信直播平台,提供全方面视频直播解决方案,全年无限直播</title>
+    <meta name="keywords" content="云犀直播、企业直播、年会直播、微信直播、免费直播、云犀BOX、网络直播、4G编码器、产品发布会直播、直播盒子、网络视频直播平台、直播解决方案、直播、现场直播">
+    <meta name="description" content="云犀直播,国内领先企业直播平台,为企业及团队提供专业的直播技术指导和免费的平台支持,包括但不仅限于年会直播、商务直播、产品发布会直播、微信直播、教育培训直播等.自主研发云犀BOX系列产品,是全球首款4G触屏直播硬件,DV、摄像机、gopro、无人机均可直播,助力企业营销.">
+    <meta name="copyright" content="">
+    <link rel="icon" type="image/png" href="http://yolo.static.yunxi.tv/yunxi/yololive/assets/logoicon.ico">
+    <link rel="stylesheet" href="../static/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/slick.css">
+    <link rel="stylesheet" href="../static/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
+
 @@include('./common/header.html')
-<p>徐绍平</p>
-<script src="../js/log.js"></script>
+
+<p>...your content</p>
+
+@@include('./common/footer.html')
+
+<script src="../static/jquery.min.js"></script>
+<script src="../static/lazysizes.min.js"></script>
+<script src="../static/slick.min.js"></script>
+
+<script>
+  $(function () {
+    $('#comment').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      slidesToShow: 1,
+      autoplay: true,
+      speed: 800
+    });
+    $('#comment').on('afterChange', function(event, slick, currentSlide){
+      //console.log(currentSlide);
+      $(".menu-list > li").removeClass('active-comment');
+      $(".menu-list > li").eq(currentSlide).addClass('active-comment')
+    });
+    $(".menu-list > li").on('click', function () {
+      var index = Number($(this).attr('data-value'));
+      $('#comment').slick('slickGoTo', index);
+      $(this).siblings().removeClass('active-comment');
+      $(this).addClass('active-comment')
+    });
+    
+    $(window).scroll(function () {
+      if (window.scrollY > 10) {
+        $(".header-trans").addClass('active-header')
+      } else {
+        $(".header-trans").removeClass('active-header')
+      }
+    })
+  })
+</script>
+
+<script>
+  
+  //移动端导航，禁止滑动
+  
+  $(".right-logo").on('click', function () {
+    $("#menuList").css("transform", "translateX(0)");
+  });
+  $("#menuClose").on('click', function () {
+    $("#menuList").css("transform", "translateX(250px)");
+  });
+  
+  $("#productMobile").click(function () {
+    $("#productList").slideToggle("fast");
+    $(this).children('a').children().toggle();
+  });
+  $("#supportMobile").click(function () {
+    $("#supportList").slideToggle("fast");
+    $(this).children('a').children().toggle();
+  });
+  $(window).scroll(function () {
+    if (window.scrollY > 10) {
+      $(".mobile-header").addClass('active-mobile')
+    } else {
+      $(".mobile-header").removeClass('active-mobile')
+    }
+  })
+</script>
 </body>
 </html>

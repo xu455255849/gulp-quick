@@ -1,3 +1,104 @@
-<div>
-    headheadheadhead
+<div class="header-trans show-pc">
+  <header class="head-wrap">
+    <div class="logo-block">
+      <img class="img-responsive lazyload" data-src="../images/header/logo-black.svg">
+      <img class="img-responsive lazyload" data-src="../images/header/logo-trans.svg">
+    </div>
+    <ul class="head-list">
+      <li>
+        <a class="md-btn" style="line-height: 36px;border-radius: 72px;">BUY NOW</a>
+      </li>
+      <li>
+        <a class="link" href="/site/about">ABOUT US</a>
+      </li>
+      
+      <li class="dropdown">
+        <a class="link" id="support" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          SUPPORT
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="support">
+          <li>
+            <a href="/site/support">Quick Guide</a>
+          </li>
+          <li>
+            <a href="/site/question">FAQ</a>
+          </li>
+          <li>
+            <a href="/site/policy">Warranty & Return Policy</a>
+          </li>
+        
+        </ul>
+      </li>
+      
+      <li class="dropdown">
+        <a class="link" id="pro" data-target="#" href="http://example.com" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          PRODUCT
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="pro">
+          <li>
+            <a href="/site/hardware">YoloBox</a>
+          </li>
+          <li>
+            <a href="/site/platform">Platform</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="link" href="/">HOME</a>
+      </li>
+    </ul>
+  </header>
+</div>
+
+<div class="mobile-header show-mobile">
+  <header class="head-wrap container">
+    <img class="black-logo lazyload" data-src="https://static.yunxi.tv/yunxi/official/international/images/header/logo-black.svg"  onclick="location.href='/'">
+    <img class="trans-logo lazyload" data-src="https://static.yunxi.tv/yunxi/official/international/images/header/logo-trans.svg" onclick="location.href='/'">
+    <img class="trans-logo right-logo lazyload" data-src="https://static.yunxi.tv/yunxi/official/v1/mobile//nav-trans.svg">
+    <img class="black-logo right-logo lazyload" data-src="https://static.yunxi.tv/yunxi/official/v1/mobile//nav.svg">
+  </header>
+  
+  <div id="menuList">
+    <div class="navbar">
+      <a class="left" href="http://b.yunxi.tv/business/user/index#/login/register" target="_blank">
+        <button class="md-btn">BUY NOW</button>
+      </a>
+      <img id="menuClose" class="right lazyload" data-src="https://static.yunxi.tv/yunxi/official/v1/mobile/nav-close.svg">
+    </div>
+    <ul class="mobile-list">
+      <li>
+        <a href="/">HOME</a>
+      </li>
+      <li id="productMobile">
+        <a href="javascript:void (0)">
+          PRODUCT
+          <img class="arrow lazyload" data-src="https://static.yunxi.tv/yunxi/official/v1/mobile/nav-down.svg"/>
+          <img class="arrow lazyload" style="display: none" data-src="https://static.yunxi.tv/yunxi/official/v1/mobile/nav-up.svg"/>
+        </a>
+      </li>
+      <div id="productList" class="dropList">
+        <a href="/site/hardware">YoloBox</a>
+        <a href="/site/platform">Platform</a>
+      </div>
+      <li id="supportMobile">
+        <a href="javascript:void (0)">
+          SUPPORT
+          <img class="arrow lazyload"
+               data-src="https://static.yunxi.tv/yunxi/official/v1/mobile/nav-down.svg"/>
+          <img class="arrow lazyload" style="display: none"
+               data-src="https://static.yunxi.tv/yunxi/official/v1/mobile/nav-up.svg"/>
+        </a>
+      </li>
+      <div id="supportList" class="dropList">
+        <a href="/site/support">Quick Guide</a>
+        <a href="/site/question">FAQ</a>
+        <a href="/site/policy">Warranty & Return Policy</a>
+      </div>
+      <li>
+        <a href="/site/about">ABOUT US</a>
+      </li>
+    </ul>
+  </div>
 </div>
